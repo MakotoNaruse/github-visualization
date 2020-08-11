@@ -48,30 +48,37 @@ func main() {
 		token := session.Get("accessToken")
 		if token == nil {
 			log.Printf("redirect")
-			c.HTML(http.StatusOK, "top.tmpl", gin.H{
-				"title": "test",
-			})
+			c.Redirect(http.StatusMovedPermanently, "/top")
 			c.Abort()
-		}
-		accessToken, _ := token.(string)
-		ts := oauth2.StaticTokenSource(
-			&oauth2.Token{AccessToken: accessToken},
-		)
-		tc := oauth2.NewClient(ctx, ts)
+		} else {
+			log.Println("logged in")
+			accessToken, _ := token.(string)
+			ts := oauth2.StaticTokenSource(
+				&oauth2.Token{AccessToken: accessToken},
+			)
+			tc := oauth2.NewClient(ctx, ts)
 
-		client := github.NewClient(tc)
-		repos, _, _ := client.Repositories.List(ctx, "MakotoNaruse", nil)
-		c.HTML(http.StatusOK, "index.tmpl", gin.H{
-			"title": "test",
-			"message":"hello world!!",
-			"repos": repos,
+			client := github.NewClient(tc)
+			repos, _, _ := client.Repositories.List(ctx, "MakotoNaruse", nil)
+			c.HTML(http.StatusOK, "index.tmpl", gin.H{
+				"title":   "index",
+				"message": "hello world!!",
+				"repos":   repos,
+			})
+		}
+	})
+
+	r.GET("/top", func(c *gin.Context) {
+		ctx := appengine.NewContext(c.Request)
+		log.Printf("%s", ctx)
+		c.HTML(http.StatusOK, "landing.tmpl", gin.H{
+			"title": "top",
 		})
 	})
 
 	r.GET("/login", func(c *gin.Context) {
 		ctx := appengine.NewContext(c.Request)
 		log.Printf("%s", ctx)
-		// TODO: stateをdbに保存してcallbackで確認する
 		url := conf.AuthCodeURL("state", oauth2.AccessTypeOffline)
 		log.Println(url)
 		c.Header("Location", url)
@@ -82,10 +89,23 @@ func main() {
 		ctx := appengine.NewContext(c.Request)
 		log.Printf("%s", ctx)
 		githubToken, _ := conf.Exchange(ctx, c.Query("code"))
-		//　TODO これでアクセストークンが得られたので、セッションに情報を入れたい
 		log.Println(githubToken.AccessToken)
+		session := sessions.Default(c)
+		session.Set("accessToken", githubToken.AccessToken)
+		session.Save()
 		c.Header("Location", "/")
 		c.SecureJSON(http.StatusTemporaryRedirect, "")
+	})
+
+	r.GET("/logout", func(c *gin.Context) {
+		ctx := appengine.NewContext(c.Request)
+		log.Printf("%s", ctx)
+		//セッションからデータを破棄する
+		session := sessions.Default(c)
+		session.Clear()
+		log.Println("セッション破棄")
+		session.Save()
+		c.Redirect(http.StatusMovedPermanently, "/")
 	})
 
 	http.Handle("/", r)
