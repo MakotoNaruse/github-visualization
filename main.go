@@ -6,6 +6,7 @@ import (
 	"github.com/google/go-github/github"
 	"github.com/joho/godotenv"
 	"golang.org/x/oauth2"
+	oauth2github "golang.org/x/oauth2/github"
 	"google.golang.org/appengine"
 	"log"
 	"net/http"
@@ -24,6 +25,15 @@ func main() {
 	//r.Static("/assets", "./assets")
 	r.LoadHTMLGlob("templates/*")
 
+	scopes := []string{"repo"}
+	conf := oauth2.Config{
+		ClientID:     os.Getenv("GITHUB_CLIENT_ID"),
+		ClientSecret: os.Getenv("GITHUB_CLIENT_SECRET"),
+		RedirectURL:  os.Getenv("REDIRECT_URL"),
+		Scopes:       scopes,
+		Endpoint:     oauth2github.Endpoint,
+	}
+
 	r.GET("/", func(c *gin.Context) {
 		ctx := appengine.NewContext(c.Request)
 		log.Printf("%s", ctx)
@@ -40,6 +50,27 @@ func main() {
 			"repos": repos,
 		})
 	})
+
+	r.GET("/login", func(c *gin.Context) {
+		ctx := appengine.NewContext(c.Request)
+		log.Printf("%s", ctx)
+		// TODO: stateをdbに保存してcallbackで確認する
+		url := conf.AuthCodeURL("state", oauth2.AccessTypeOffline)
+		log.Println(url)
+		c.Header("Location", url)
+		c.SecureJSON(http.StatusTemporaryRedirect, "")
+	})
+
+	r.GET("/callback", func(c *gin.Context) {
+		ctx := appengine.NewContext(c.Request)
+		log.Printf("%s", ctx)
+		githubToken, _ := conf.Exchange(ctx, c.Query("code"))
+		//　TODO これでアクセストークンが得られたので、セッションに情報を入れたい
+		log.Println(githubToken.AccessToken)
+		c.Header("Location", "/")
+		c.SecureJSON(http.StatusTemporaryRedirect, "")
+	})
+
 	http.Handle("/", r)
 
 	port := os.Getenv("PORT")
