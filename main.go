@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 	"github.com/google/go-github/github"
 	"github.com/joho/godotenv"
@@ -18,12 +20,17 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	oauthKey := os.Getenv("OAUTH_KEY")
+	//デバッグ用キー
+	//oauthKey := os.Getenv("OAUTH_KEY")
 
 	r := gin.New()
 
 	//r.Static("/assets", "./assets")
 	r.LoadHTMLGlob("templates/*")
+
+	// セッションの設定
+	store := cookie.NewStore([]byte("secret"))
+	r.Use(sessions.Sessions("github-visualization", store))
 
 	scopes := []string{"repo"}
 	conf := oauth2.Config{
@@ -37,8 +44,18 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		ctx := appengine.NewContext(c.Request)
 		log.Printf("%s", ctx)
+		session := sessions.Default(c)
+		token := session.Get("accessToken")
+		if token == nil {
+			log.Printf("redirect")
+			c.HTML(http.StatusOK, "top.tmpl", gin.H{
+				"title": "test",
+			})
+			c.Abort()
+		}
+		accessToken, _ := token.(string)
 		ts := oauth2.StaticTokenSource(
-			&oauth2.Token{AccessToken: oauthKey},
+			&oauth2.Token{AccessToken: accessToken},
 		)
 		tc := oauth2.NewClient(ctx, ts)
 
