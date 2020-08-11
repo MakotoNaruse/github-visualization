@@ -1,0 +1,3 @@
+# gtihub-visualization
+
+githubのリポジトリデータからエンジニアの生産性を可視化するツールを開発中
