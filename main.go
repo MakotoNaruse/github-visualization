@@ -11,8 +11,10 @@ import (
 	oauth2github "golang.org/x/oauth2/github"
 	"google.golang.org/appengine"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
+	"time"
 )
 
 func main() {
@@ -79,7 +81,11 @@ func main() {
 	r.GET("/login", func(c *gin.Context) {
 		ctx := appengine.NewContext(c.Request)
 		log.Printf("%s", ctx)
-		url := conf.AuthCodeURL("state", oauth2.AccessTypeOffline)
+		session := sessions.Default(c)
+		state := createRand()
+		session.Set("state", state)
+		session.Save()
+		url := conf.AuthCodeURL(state, oauth2.AccessTypeOffline)
 		log.Println(url)
 		c.Header("Location", url)
 		c.SecureJSON(http.StatusTemporaryRedirect, "")
@@ -91,10 +97,22 @@ func main() {
 		githubToken, _ := conf.Exchange(ctx, c.Query("code"))
 		log.Println(githubToken.AccessToken)
 		session := sessions.Default(c)
-		session.Set("accessToken", githubToken.AccessToken)
-		session.Save()
-		c.Header("Location", "/")
-		c.SecureJSON(http.StatusTemporaryRedirect, "")
+		state := session.Get("state")
+		if state == nil {
+			log.Printf("redirect")
+			c.Redirect(http.StatusMovedPermanently, "/top")
+		} else{
+			st, _ := state.(string)
+			if st == c.Query("state"){
+				session.Clear()
+				session.Set("accessToken", githubToken.AccessToken)
+				session.Save()
+				c.Redirect(http.StatusMovedPermanently, "/")
+			} else{
+				log.Printf("redirect")
+				c.Redirect(http.StatusMovedPermanently, "/top")
+			}
+		}
 	})
 
 	r.GET("/logout", func(c *gin.Context) {
@@ -119,4 +137,32 @@ func main() {
 	log.Printf("Listening on port %s", port)
 	log.Printf("Open http://localhost:%s in the browser", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
+}
+
+const (
+	letters   = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	indexBit  = 6
+	indexMask = 1<<indexBit - 1
+	indexMax  = 63 / indexBit
+)
+
+func createRand() (randVal string) {
+	randSource := rand.NewSource(time.Now().UnixNano())
+	n := 32
+	b := make([]byte, n)
+	cache, remain := randSource.Int63(), indexMax
+	for i := n - 1; i >= 0; {
+		if remain == 0 {
+			cache, remain = randSource.Int63(), indexMax
+		}
+		index := int(cache & indexMask)
+		if index < len(letters) {
+			b[i] = letters[index]
+			i--
+		}
+		cache >>= indexBit
+		remain--
+	}
+	randVal = string(b)
+	return
 }
