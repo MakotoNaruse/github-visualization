@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f5bfd7e3-ddf0-42e7-ad16-ca41f5124632" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +17,7 @@
         <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Go File" />
       </list>
     </option>
   </component>
@@ -33,18 +35,19 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/templates" />
     </key>
   </component>
   <component name="RunManager">
@@ -79,37 +82,37 @@
       <screen x="1440" y="-540" width="2560" height="1440" />
     </state>
     <state x="2479" y="-11" key="#com.intellij.fileTypes.FileTypeChooser/1440.-540.2560.1440/0.0.1440.900@1440.-540.2560.1440" timestamp="1597135916021" />
-    <state width="2518" height="424" key="GridCell.Tab.0.bottom" timestamp="1597296389158">
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom" timestamp="1597326652667">
       <screen x="1440" y="-540" width="2560" height="1440" />
     </state>
-    <state width="2518" height="424" key="GridCell.Tab.0.bottom/1440.-517.2560.1417/0.23.1440.816@1440.-517.2560.1417" timestamp="1597296172286" />
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom/1440.-517.2560.1417/0.23.1440.816@1440.-517.2560.1417" timestamp="1597298371231" />
     <state width="2518" height="424" key="GridCell.Tab.0.bottom/1440.-517.2560.1417/0.23.1440.821@1440.-517.2560.1417" timestamp="1597136403427" />
-    <state width="2518" height="424" key="GridCell.Tab.0.bottom/1440.-540.2560.1440/0.0.1440.900@1440.-540.2560.1440" timestamp="1597296389158" />
-    <state width="2518" height="424" key="GridCell.Tab.0.bottom/1440.-540.2560.1440/0.23.1440.816@1440.-540.2560.1440" timestamp="1597124831339" />
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom/1440.-540.2560.1440/0.0.1440.900@1440.-540.2560.1440" timestamp="1597326652667" />
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom/1440.-540.2560.1440/0.23.1440.816@1440.-540.2560.1440" timestamp="1597309757517" />
     <state width="2518" height="424" key="GridCell.Tab.0.bottom/1440.-540.2560.1440/0.23.1440.877@1440.-540.2560.1440" timestamp="1597134542567" />
-    <state width="2518" height="424" key="GridCell.Tab.0.center" timestamp="1597296389157">
+    <state width="2518" height="424" key="GridCell.Tab.0.center" timestamp="1597326652666">
       <screen x="1440" y="-540" width="2560" height="1440" />
     </state>
-    <state width="2518" height="424" key="GridCell.Tab.0.center/1440.-517.2560.1417/0.23.1440.816@1440.-517.2560.1417" timestamp="1597296172285" />
+    <state width="2518" height="424" key="GridCell.Tab.0.center/1440.-517.2560.1417/0.23.1440.816@1440.-517.2560.1417" timestamp="1597298371229" />
     <state width="2518" height="424" key="GridCell.Tab.0.center/1440.-517.2560.1417/0.23.1440.821@1440.-517.2560.1417" timestamp="1597136403426" />
-    <state width="2518" height="424" key="GridCell.Tab.0.center/1440.-540.2560.1440/0.0.1440.900@1440.-540.2560.1440" timestamp="1597296389157" />
-    <state width="2518" height="424" key="GridCell.Tab.0.center/1440.-540.2560.1440/0.23.1440.816@1440.-540.2560.1440" timestamp="1597124831337" />
+    <state width="2518" height="424" key="GridCell.Tab.0.center/1440.-540.2560.1440/0.0.1440.900@1440.-540.2560.1440" timestamp="1597326652666" />
+    <state width="2518" height="424" key="GridCell.Tab.0.center/1440.-540.2560.1440/0.23.1440.816@1440.-540.2560.1440" timestamp="1597309757516" />
     <state width="2518" height="424" key="GridCell.Tab.0.center/1440.-540.2560.1440/0.23.1440.877@1440.-540.2560.1440" timestamp="1597134542566" />
-    <state width="2518" height="424" key="GridCell.Tab.0.left" timestamp="1597296389156">
+    <state width="2518" height="424" key="GridCell.Tab.0.left" timestamp="1597326652665">
       <screen x="1440" y="-540" width="2560" height="1440" />
     </state>
-    <state width="2518" height="424" key="GridCell.Tab.0.left/1440.-517.2560.1417/0.23.1440.816@1440.-517.2560.1417" timestamp="1597296172284" />
+    <state width="2518" height="424" key="GridCell.Tab.0.left/1440.-517.2560.1417/0.23.1440.816@1440.-517.2560.1417" timestamp="1597298371228" />
     <state width="2518" height="424" key="GridCell.Tab.0.left/1440.-517.2560.1417/0.23.1440.821@1440.-517.2560.1417" timestamp="1597136403425" />
-    <state width="2518" height="424" key="GridCell.Tab.0.left/1440.-540.2560.1440/0.0.1440.900@1440.-540.2560.1440" timestamp="1597296389156" />
-    <state width="2518" height="424" key="GridCell.Tab.0.left/1440.-540.2560.1440/0.23.1440.816@1440.-540.2560.1440" timestamp="1597124831335" />
+    <state width="2518" height="424" key="GridCell.Tab.0.left/1440.-540.2560.1440/0.0.1440.900@1440.-540.2560.1440" timestamp="1597326652665" />
+    <state width="2518" height="424" key="GridCell.Tab.0.left/1440.-540.2560.1440/0.23.1440.816@1440.-540.2560.1440" timestamp="1597309757515" />
     <state width="2518" height="424" key="GridCell.Tab.0.left/1440.-540.2560.1440/0.23.1440.877@1440.-540.2560.1440" timestamp="1597134542564" />
-    <state width="2518" height="424" key="GridCell.Tab.0.right" timestamp="1597296389157">
+    <state width="2518" height="424" key="GridCell.Tab.0.right" timestamp="1597326652667">
       <screen x="1440" y="-540" width="2560" height="1440" />
     </state>
-    <state width="2518" height="424" key="GridCell.Tab.0.right/1440.-517.2560.1417/0.23.1440.816@1440.-517.2560.1417" timestamp="1597296172286" />
+    <state width="2518" height="424" key="GridCell.Tab.0.right/1440.-517.2560.1417/0.23.1440.816@1440.-517.2560.1417" timestamp="1597298371230" />
     <state width="2518" height="424" key="GridCell.Tab.0.right/1440.-517.2560.1417/0.23.1440.821@1440.-517.2560.1417" timestamp="1597136403427" />
-    <state width="2518" height="424" key="GridCell.Tab.0.right/1440.-540.2560.1440/0.0.1440.900@1440.-540.2560.1440" timestamp="1597296389157" />
-    <state width="2518" height="424" key="GridCell.Tab.0.right/1440.-540.2560.1440/0.23.1440.816@1440.-540.2560.1440" timestamp="1597124831338" />
+    <state width="2518" height="424" key="GridCell.Tab.0.right/1440.-540.2560.1440/0.0.1440.900@1440.-540.2560.1440" timestamp="1597326652667" />
+    <state width="2518" height="424" key="GridCell.Tab.0.right/1440.-540.2560.1440/0.23.1440.816@1440.-540.2560.1440" timestamp="1597309757517" />
     <state width="2518" height="424" key="GridCell.Tab.0.right/1440.-540.2560.1440/0.23.1440.877@1440.-540.2560.1440" timestamp="1597134542567" />
   </component>
 </project>

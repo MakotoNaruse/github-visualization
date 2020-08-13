@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
@@ -10,6 +11,7 @@ import (
 	"golang.org/x/oauth2"
 	oauth2github "golang.org/x/oauth2/github"
 	"google.golang.org/appengine"
+	"io/ioutil"
 	"log"
 	"math/rand"
 	"net/http"
@@ -34,7 +36,20 @@ func main() {
 	store := cookie.NewStore([]byte("secret"))
 	r.Use(sessions.Sessions("github-visualization", store))
 
-	var scopes = []string{"repo:status", "read:user"}
+	// JSONデコード
+	// JSONファイル読み込み
+	bytes, err := ioutil.ReadFile("test.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	var githubWrap GithubWrap
+	if err := json.Unmarshal(bytes, &githubWrap); err != nil {
+		log.Fatal(err)
+	}
+	// デコードしたデータを表示
+	fmt.Printf("%+v\n", githubWrap.GithubData.GithubUser.ContributionsCollection.CommitContributions[0].Repository.Owner.Login)
+
+	var scopes = []string{"repo:status", "read:repo_hook","read:user"}
 	conf := oauth2.Config{
 		ClientID:     os.Getenv("GITHUB_CLIENT_ID"),
 		ClientSecret: os.Getenv("GITHUB_CLIENT_SECRET"),

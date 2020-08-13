@@ -1,0 +1,1860 @@
+{
+  "data": {
+    "viewer": {
+      "contributionsCollection": {
+        "commitContributionsByRepository": [
+          {
+            "repository": {
+              "owner": {
+                "login": "SpportunityKawato"
+              },
+              "name": "spportunity_user",
+              "languages": {
+                "totalCount": 6,
+                "totalSize": 1245704,
+                "nodes": [
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#244776",
+                    "name": "CoffeeScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  },
+                  {
+                    "color": "#89e051",
+                    "name": "Shell"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 354452
+                  },
+                  {
+                    "size": 132646
+                  },
+                  {
+                    "size": 844
+                  },
+                  {
+                    "size": 284257
+                  },
+                  {
+                    "size": 472081
+                  },
+                  {
+                    "size": 1424
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 168,
+              "nodes": [
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-08-10T07:00:00Z"
+                },
+                {
+                  "commitCount": 8,
+                  "occurredAt": "2020-08-03T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-08-01T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-07-31T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-07-30T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-07-29T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-28T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-07-21T07:00:00Z"
+                },
+                {
+                  "commitCount": 8,
+                  "occurredAt": "2020-07-20T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-07-13T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-07-12T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-07-09T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-08T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-07-07T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-07-06T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-07-05T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-04T07:00:00Z"
+                },
+                {
+                  "commitCount": 10,
+                  "occurredAt": "2020-07-02T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-07-01T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-06-30T07:00:00Z"
+                },
+                {
+                  "commitCount": 12,
+                  "occurredAt": "2020-06-28T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-06-25T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-06-24T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-06-18T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-06-17T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-06-15T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-06-10T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-06-09T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-06-08T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-06-02T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-06-01T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-05-31T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-05-30T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-05-29T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-05-28T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-05-27T07:00:00Z"
+                },
+                {
+                  "commitCount": 6,
+                  "occurredAt": "2020-05-26T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-05-25T07:00:00Z"
+                },
+                {
+                  "commitCount": 14,
+                  "occurredAt": "2020-05-24T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-05-22T07:00:00Z"
+                },
+                {
+                  "commitCount": 6,
+                  "occurredAt": "2020-05-14T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-05-13T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-05-11T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "kucanoe.oicon",
+              "languages": {
+                "totalCount": 3,
+                "totalSize": 38175,
+                "nodes": [
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 2112
+                  },
+                  {
+                    "size": 25148
+                  },
+                  {
+                    "size": 10915
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 93,
+              "nodes": [
+                {
+                  "commitCount": 62,
+                  "occurredAt": "2020-02-22T08:00:00Z"
+                },
+                {
+                  "commitCount": 10,
+                  "occurredAt": "2020-02-21T08:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-02-17T08:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-02-14T08:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-02-09T08:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-02-08T08:00:00Z"
+                },
+                {
+                  "commitCount": 7,
+                  "occurredAt": "2020-02-07T08:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-01-14T08:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "SpportunityKawato"
+              },
+              "name": "spportunity_client",
+              "languages": {
+                "totalCount": 7,
+                "totalSize": 37765895,
+                "nodes": [
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#244776",
+                    "name": "CoffeeScript"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  },
+                  {
+                    "color": null,
+                    "name": "TSQL"
+                  },
+                  {
+                    "color": "#89e051",
+                    "name": "Shell"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 414747
+                  },
+                  {
+                    "size": 3058
+                  },
+                  {
+                    "size": 34682
+                  },
+                  {
+                    "size": 30753
+                  },
+                  {
+                    "size": 395019
+                  },
+                  {
+                    "size": 36886166
+                  },
+                  {
+                    "size": 1470
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 84,
+              "nodes": [
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-08-10T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-07-14T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-07-12T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-09T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-07-08T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-07T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-07-05T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-07-04T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-07-03T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-06-24T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-06-23T07:00:00Z"
+                },
+                {
+                  "commitCount": 6,
+                  "occurredAt": "2020-06-15T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-06-09T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-06-08T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-06-05T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-06-04T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-05-31T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-05-29T07:00:00Z"
+                },
+                {
+                  "commitCount": 7,
+                  "occurredAt": "2020-05-28T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-05-26T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-05-25T07:00:00Z"
+                },
+                {
+                  "commitCount": 6,
+                  "occurredAt": "2020-05-24T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-05-22T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "hatena"
+              },
+              "name": "Giga-Usagi",
+              "languages": {
+                "totalCount": 15,
+                "totalSize": 19816728,
+                "nodes": [
+                  {
+                    "color": "#e69f56",
+                    "name": "Groovy"
+                  },
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#384d54",
+                    "name": "Dockerfile"
+                  },
+                  {
+                    "color": "#427819",
+                    "name": "Makefile"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#0298c3",
+                    "name": "Perl"
+                  },
+                  {
+                    "color": "#89e051",
+                    "name": "Shell"
+                  },
+                  {
+                    "color": "#148AA8",
+                    "name": "VCL"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  },
+                  {
+                    "color": null,
+                    "name": "TSQL"
+                  },
+                  {
+                    "color": null,
+                    "name": "PLpgSQL"
+                  },
+                  {
+                    "color": "#dad8d8",
+                    "name": "PLSQL"
+                  },
+                  {
+                    "color": "#2b7489",
+                    "name": "TypeScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#0000fb",
+                    "name": "Raku"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 22486
+                  },
+                  {
+                    "size": 103714
+                  },
+                  {
+                    "size": 2520
+                  },
+                  {
+                    "size": 2291
+                  },
+                  {
+                    "size": 390605
+                  },
+                  {
+                    "size": 14547048
+                  },
+                  {
+                    "size": 57758
+                  },
+                  {
+                    "size": 3955
+                  },
+                  {
+                    "size": 1869126
+                  },
+                  {
+                    "size": 161049
+                  },
+                  {
+                    "size": 28416
+                  },
+                  {
+                    "size": 3215
+                  },
+                  {
+                    "size": 903297
+                  },
+                  {
+                    "size": 1677789
+                  },
+                  {
+                    "size": 43459
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 83,
+              "nodes": [
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-08-07T07:00:00Z"
+                },
+                {
+                  "commitCount": 11,
+                  "occurredAt": "2020-08-06T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-08-05T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-07-31T07:00:00Z"
+                },
+                {
+                  "commitCount": 18,
+                  "occurredAt": "2020-07-27T07:00:00Z"
+                },
+                {
+                  "commitCount": 8,
+                  "occurredAt": "2020-07-20T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-17T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-07-13T07:00:00Z"
+                },
+                {
+                  "commitCount": 11,
+                  "occurredAt": "2020-07-10T07:00:00Z"
+                },
+                {
+                  "commitCount": 13,
+                  "occurredAt": "2020-07-06T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-03T07:00:00Z"
+                },
+                {
+                  "commitCount": 6,
+                  "occurredAt": "2020-07-01T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "Canoe_app",
+              "languages": {
+                "totalCount": 5,
+                "totalSize": 285401,
+                "nodes": [
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  },
+                  {
+                    "color": "#244776",
+                    "name": "CoffeeScript"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 156926
+                  },
+                  {
+                    "size": 1182
+                  },
+                  {
+                    "size": 11969
+                  },
+                  {
+                    "size": 111526
+                  },
+                  {
+                    "size": 3798
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 58,
+              "nodes": [
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-08-06T07:00:00Z"
+                },
+                {
+                  "commitCount": 7,
+                  "occurredAt": "2020-08-04T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-07-22T07:00:00Z"
+                },
+                {
+                  "commitCount": 12,
+                  "occurredAt": "2020-07-16T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-06-09T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-05-16T07:00:00Z"
+                },
+                {
+                  "commitCount": 8,
+                  "occurredAt": "2020-05-15T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-04-13T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-04-12T07:00:00Z"
+                },
+                {
+                  "commitCount": 6,
+                  "occurredAt": "2020-04-01T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2019-08-23T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2019-08-21T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2019-08-20T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2019-08-14T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "SpportunityKawato"
+              },
+              "name": "new_spportunity_client",
+              "languages": {
+                "totalCount": 10,
+                "totalSize": 406568,
+                "nodes": [
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#2c3e50",
+                    "name": "Vue"
+                  },
+                  {
+                    "color": "#2b7489",
+                    "name": "TypeScript"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  },
+                  {
+                    "color": "#427819",
+                    "name": "Makefile"
+                  },
+                  {
+                    "color": "#384d54",
+                    "name": "Dockerfile"
+                  },
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#89e051",
+                    "name": "Shell"
+                  },
+                  {
+                    "color": null,
+                    "name": "HCL"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 60282
+                  },
+                  {
+                    "size": 1034
+                  },
+                  {
+                    "size": 107894
+                  },
+                  {
+                    "size": 20543
+                  },
+                  {
+                    "size": 467
+                  },
+                  {
+                    "size": 3124
+                  },
+                  {
+                    "size": 643
+                  },
+                  {
+                    "size": 179167
+                  },
+                  {
+                    "size": 1465
+                  },
+                  {
+                    "size": 31949
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 30,
+              "nodes": [
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-07-30T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-07-29T07:00:00Z"
+                },
+                {
+                  "commitCount": 17,
+                  "occurredAt": "2020-07-25T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-16T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-15T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-07-14T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "wssocinf-web",
+              "languages": {
+                "totalCount": 4,
+                "totalSize": 58429,
+                "nodes": [
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 43996
+                  },
+                  {
+                    "size": 3779
+                  },
+                  {
+                    "size": 1424
+                  },
+                  {
+                    "size": 9230
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 30,
+              "nodes": [
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-07-23T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-07-21T07:00:00Z"
+                },
+                {
+                  "commitCount": 4,
+                  "occurredAt": "2020-07-16T07:00:00Z"
+                },
+                {
+                  "commitCount": 9,
+                  "occurredAt": "2020-07-09T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-02T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-06-25T07:00:00Z"
+                },
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-05-28T07:00:00Z"
+                },
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-05-21T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-05-14T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "f81"
+              },
+              "name": "intern2022_MakotoNaruse",
+              "languages": {
+                "totalCount": 2,
+                "totalSize": 8848,
+                "nodes": [
+                  {
+                    "color": "#c22d40",
+                    "name": "Scala"
+                  },
+                  {
+                    "color": null,
+                    "name": "TSQL"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 7832
+                  },
+                  {
+                    "size": 1016
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 21,
+              "nodes": [
+                {
+                  "commitCount": 21,
+                  "occurredAt": "2020-06-28T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "skyway-test",
+              "languages": {
+                "totalCount": 5,
+                "totalSize": 52599,
+                "nodes": [
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#2c3e50",
+                    "name": "Vue"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 32531
+                  },
+                  {
+                    "size": 6172
+                  },
+                  {
+                    "size": 886
+                  },
+                  {
+                    "size": 6915
+                  },
+                  {
+                    "size": 6095
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 11,
+              "nodes": [
+                {
+                  "commitCount": 6,
+                  "occurredAt": "2020-04-13T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-04-12T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "github-visualization",
+              "languages": {
+                "totalCount": 1,
+                "totalSize": 4204,
+                "nodes": [
+                  {
+                    "color": "#00ADD8",
+                    "name": "Go"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 4204
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 7,
+              "nodes": [
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-08-13T07:00:00Z"
+                },
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-08-12T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-08-11T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "wssocinf-python",
+              "languages": {
+                "totalCount": 1,
+                "totalSize": 71874,
+                "nodes": [
+                  {
+                    "color": "#3572A5",
+                    "name": "Python"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 71874
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 6,
+              "nodes": [
+                {
+                  "commitCount": 1,
+                  "occurredAt": "2020-05-28T07:00:00Z"
+                },
+                {
+                  "commitCount": 5,
+                  "occurredAt": "2020-05-14T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "rails6-apimode-diff",
+              "languages": {
+                "totalCount": 4,
+                "totalSize": 42400,
+                "nodes": [
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 32259
+                  },
+                  {
+                    "size": 3779
+                  },
+                  {
+                    "size": 709
+                  },
+                  {
+                    "size": 5653
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 3,
+              "nodes": [
+                {
+                  "commitCount": 3,
+                  "occurredAt": "2020-07-16T07:00:00Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "rakuten-intern-ex",
+              "languages": {
+                "totalCount": 2,
+                "totalSize": 863,
+                "nodes": [
+                  {
+                    "color": "#b07219",
+                    "name": "Java"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 837
+                  },
+                  {
+                    "size": 26
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 2,
+              "nodes": [
+                {
+                  "commitCount": 2,
+                  "occurredAt": "2020-08-09T07:00:00Z"
+                }
+              ]
+            }
+          }
+        ],
+        "pullRequestReviewContributionsByRepository": [
+          {
+            "repository": {
+              "owner": {
+                "login": "SpportunityKawato"
+              },
+              "name": "spportunity_user",
+              "languages": {
+                "totalCount": 6,
+                "totalSize": 1245704,
+                "nodes": [
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#244776",
+                    "name": "CoffeeScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  },
+                  {
+                    "color": "#89e051",
+                    "name": "Shell"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 354452
+                  },
+                  {
+                    "size": 132646
+                  },
+                  {
+                    "size": 844
+                  },
+                  {
+                    "size": 284257
+                  },
+                  {
+                    "size": 472081
+                  },
+                  {
+                    "size": 1424
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 15,
+              "nodes": [
+                {
+                  "occurredAt": "2020-07-28T12:49:55Z"
+                },
+                {
+                  "occurredAt": "2020-07-27T14:49:40Z"
+                },
+                {
+                  "occurredAt": "2020-07-27T10:20:35Z"
+                },
+                {
+                  "occurredAt": "2020-07-26T04:26:00Z"
+                },
+                {
+                  "occurredAt": "2020-07-25T16:10:19Z"
+                },
+                {
+                  "occurredAt": "2020-06-29T04:43:24Z"
+                },
+                {
+                  "occurredAt": "2020-06-28T14:16:21Z"
+                },
+                {
+                  "occurredAt": "2020-06-23T23:43:48Z"
+                },
+                {
+                  "occurredAt": "2020-06-23T14:39:29Z"
+                },
+                {
+                  "occurredAt": "2020-06-08T12:54:06Z"
+                },
+                {
+                  "occurredAt": "2020-05-27T06:12:18Z"
+                },
+                {
+                  "occurredAt": "2020-05-13T12:15:12Z"
+                },
+                {
+                  "occurredAt": "2020-05-09T08:23:02Z"
+                },
+                {
+                  "occurredAt": "2020-05-05T00:44:57Z"
+                },
+                {
+                  "occurredAt": "2020-05-03T14:03:10Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "SpportunityKawato"
+              },
+              "name": "spportunity_client",
+              "languages": {
+                "totalCount": 7,
+                "totalSize": 37765895,
+                "nodes": [
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#244776",
+                    "name": "CoffeeScript"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  },
+                  {
+                    "color": null,
+                    "name": "TSQL"
+                  },
+                  {
+                    "color": "#89e051",
+                    "name": "Shell"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 414747
+                  },
+                  {
+                    "size": 3058
+                  },
+                  {
+                    "size": 34682
+                  },
+                  {
+                    "size": 30753
+                  },
+                  {
+                    "size": 395019
+                  },
+                  {
+                    "size": 36886166
+                  },
+                  {
+                    "size": 1470
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 6,
+              "nodes": [
+                {
+                  "occurredAt": "2020-07-25T07:27:46Z"
+                },
+                {
+                  "occurredAt": "2020-07-04T09:27:14Z"
+                },
+                {
+                  "occurredAt": "2020-06-23T23:44:53Z"
+                },
+                {
+                  "occurredAt": "2020-06-23T11:13:33Z"
+                },
+                {
+                  "occurredAt": "2020-06-10T10:27:20Z"
+                },
+                {
+                  "occurredAt": "2020-05-27T15:57:36Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "SpportunityKawato"
+              },
+              "name": "new_spportunity_client",
+              "languages": {
+                "totalCount": 10,
+                "totalSize": 406568,
+                "nodes": [
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#2c3e50",
+                    "name": "Vue"
+                  },
+                  {
+                    "color": "#2b7489",
+                    "name": "TypeScript"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  },
+                  {
+                    "color": "#427819",
+                    "name": "Makefile"
+                  },
+                  {
+                    "color": "#384d54",
+                    "name": "Dockerfile"
+                  },
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#89e051",
+                    "name": "Shell"
+                  },
+                  {
+                    "color": null,
+                    "name": "HCL"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 60282
+                  },
+                  {
+                    "size": 1034
+                  },
+                  {
+                    "size": 107894
+                  },
+                  {
+                    "size": 20543
+                  },
+                  {
+                    "size": 467
+                  },
+                  {
+                    "size": 3124
+                  },
+                  {
+                    "size": 643
+                  },
+                  {
+                    "size": 179167
+                  },
+                  {
+                    "size": 1465
+                  },
+                  {
+                    "size": 31949
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 4,
+              "nodes": [
+                {
+                  "occurredAt": "2020-08-12T14:09:09Z"
+                },
+                {
+                  "occurredAt": "2020-08-10T15:25:12Z"
+                },
+                {
+                  "occurredAt": "2020-08-09T03:11:46Z"
+                },
+                {
+                  "occurredAt": "2020-07-19T09:21:16Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "wssocinf-python",
+              "languages": {
+                "totalCount": 1,
+                "totalSize": 71874,
+                "nodes": [
+                  {
+                    "color": "#3572A5",
+                    "name": "Python"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 71874
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 4,
+              "nodes": [
+                {
+                  "occurredAt": "2020-07-16T09:04:58Z"
+                },
+                {
+                  "occurredAt": "2020-07-16T07:39:51Z"
+                },
+                {
+                  "occurredAt": "2020-06-25T08:37:48Z"
+                },
+                {
+                  "occurredAt": "2020-05-28T13:28:24Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "wssocinf-web",
+              "languages": {
+                "totalCount": 4,
+                "totalSize": 58429,
+                "nodes": [
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 43996
+                  },
+                  {
+                    "size": 3779
+                  },
+                  {
+                    "size": 1424
+                  },
+                  {
+                    "size": 9230
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 3,
+              "nodes": [
+                {
+                  "occurredAt": "2020-07-21T06:25:50Z"
+                },
+                {
+                  "occurredAt": "2020-07-02T08:35:48Z"
+                },
+                {
+                  "occurredAt": "2020-06-25T12:37:53Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "hatena"
+              },
+              "name": "Giga-Usagi",
+              "languages": {
+                "totalCount": 15,
+                "totalSize": 19816728,
+                "nodes": [
+                  {
+                    "color": "#e69f56",
+                    "name": "Groovy"
+                  },
+                  {
+                    "color": "#701516",
+                    "name": "Ruby"
+                  },
+                  {
+                    "color": "#384d54",
+                    "name": "Dockerfile"
+                  },
+                  {
+                    "color": "#427819",
+                    "name": "Makefile"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#0298c3",
+                    "name": "Perl"
+                  },
+                  {
+                    "color": "#89e051",
+                    "name": "Shell"
+                  },
+                  {
+                    "color": "#148AA8",
+                    "name": "VCL"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  },
+                  {
+                    "color": null,
+                    "name": "TSQL"
+                  },
+                  {
+                    "color": null,
+                    "name": "PLpgSQL"
+                  },
+                  {
+                    "color": "#dad8d8",
+                    "name": "PLSQL"
+                  },
+                  {
+                    "color": "#2b7489",
+                    "name": "TypeScript"
+                  },
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#0000fb",
+                    "name": "Raku"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 22486
+                  },
+                  {
+                    "size": 103714
+                  },
+                  {
+                    "size": 2520
+                  },
+                  {
+                    "size": 2291
+                  },
+                  {
+                    "size": 390605
+                  },
+                  {
+                    "size": 14547048
+                  },
+                  {
+                    "size": 57758
+                  },
+                  {
+                    "size": 3955
+                  },
+                  {
+                    "size": 1869126
+                  },
+                  {
+                    "size": 161049
+                  },
+                  {
+                    "size": 28416
+                  },
+                  {
+                    "size": 3215
+                  },
+                  {
+                    "size": 903297
+                  },
+                  {
+                    "size": 1677789
+                  },
+                  {
+                    "size": 43459
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 1,
+              "nodes": [
+                {
+                  "occurredAt": "2020-07-06T01:48:07Z"
+                }
+              ]
+            }
+          },
+          {
+            "repository": {
+              "owner": {
+                "login": "MakotoNaruse"
+              },
+              "name": "Hatena-Intern-Universe-2017",
+              "languages": {
+                "totalCount": 10,
+                "totalSize": 1191208,
+                "nodes": [
+                  {
+                    "color": "#563d7c",
+                    "name": "CSS"
+                  },
+                  {
+                    "color": "#e34c26",
+                    "name": "HTML"
+                  },
+                  {
+                    "color": "#f1e05a",
+                    "name": "JavaScript"
+                  },
+                  {
+                    "color": "#0298c3",
+                    "name": "Perl"
+                  },
+                  {
+                    "color": "#c22d40",
+                    "name": "Scala"
+                  },
+                  {
+                    "color": "#438eff",
+                    "name": "Objective-C"
+                  },
+                  {
+                    "color": "#ffac45",
+                    "name": "Swift"
+                  },
+                  {
+                    "color": "#89e051",
+                    "name": "Shell"
+                  },
+                  {
+                    "color": "#3572A5",
+                    "name": "Python"
+                  },
+                  {
+                    "color": "#384d54",
+                    "name": "Dockerfile"
+                  }
+                ],
+                "edges": [
+                  {
+                    "size": 45134
+                  },
+                  {
+                    "size": 856977
+                  },
+                  {
+                    "size": 33143
+                  },
+                  {
+                    "size": 140624
+                  },
+                  {
+                    "size": 63633
+                  },
+                  {
+                    "size": 422
+                  },
+                  {
+                    "size": 31724
+                  },
+                  {
+                    "size": 7338
+                  },
+                  {
+                    "size": 7669
+                  },
+                  {
+                    "size": 4544
+                  }
+                ]
+              }
+            },
+            "contributions": {
+              "totalCount": 1,
+              "nodes": [
+                {
+                  "occurredAt": "2020-06-12T03:17:55Z"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
