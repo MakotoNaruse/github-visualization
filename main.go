@@ -34,7 +34,7 @@ func main() {
 	store := cookie.NewStore([]byte("secret"))
 	r.Use(sessions.Sessions("github-visualization", store))
 
-	scopes := []string{"repo"}
+	var scopes = []string{"repo:status", "read:user"}
 	conf := oauth2.Config{
 		ClientID:     os.Getenv("GITHUB_CLIENT_ID"),
 		ClientSecret: os.Getenv("GITHUB_CLIENT_SECRET"),
@@ -83,6 +83,7 @@ func main() {
 		log.Printf("%s", ctx)
 		session := sessions.Default(c)
 		state := createRand()
+		session.Clear()
 		session.Set("state", state)
 		session.Save()
 		url := conf.AuthCodeURL(state, oauth2.AccessTypeOffline)
@@ -104,6 +105,7 @@ func main() {
 		} else{
 			st, _ := state.(string)
 			if st == c.Query("state"){
+				log.Println("authorized")
 				session.Clear()
 				session.Set("accessToken", githubToken.AccessToken)
 				session.Save()
