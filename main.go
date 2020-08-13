@@ -15,6 +15,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"net/http/httputil"
 	"os"
 	"time"
 )
@@ -74,13 +75,80 @@ func main() {
 				&oauth2.Token{AccessToken: accessToken},
 			)
 			tc := oauth2.NewClient(ctx, ts)
-
 			client := github.NewClient(tc)
-			repos, _, _ := client.Repositories.List(ctx, "MakotoNaruse", nil)
+			query, err := ioutil.ReadFile("query.txt")
+			if err != nil {
+				log.Fatal(err)
+			}
+			log.Printf("%s\n", query)
+			req, _ := client.NewRequest("POST", "/graphql", gin.H{"query": string(query)})
+			dumpReq, _ := httputil.DumpRequest(req, true)
+			log.Printf("%s\n",dumpReq)
+			resp, _ := tc.Do(req)
+			dumpResp, _ := httputil.DumpResponse(resp, true)
+			log.Printf("%s\n", dumpResp)
+			result, _ := ioutil.ReadAll(resp.Body)
+			var githubWrap GithubWrap
+			if err := json.Unmarshal(result, &githubWrap); err != nil {
+				log.Fatal(err)
+			}
+			log.Printf("%+v\n", githubWrap)
 			c.HTML(http.StatusOK, "index.tmpl", gin.H{
 				"title":   "index",
 				"message": "hello world!!",
-				"repos":   repos,
+			})
+		}
+	})
+
+	r.GET("/api/:owner/:repo", func(c *gin.Context) {
+		ctx := appengine.NewContext(c.Request)
+		log.Printf("%s", ctx)
+		session := sessions.Default(c)
+		token := session.Get("accessToken")
+		if token == nil {
+			c.JSON(http.StatusBadRequest, gin.H{})
+		} else {
+			accessToken, _ := token.(string)
+			ts := oauth2.StaticTokenSource(
+				&oauth2.Token{AccessToken: accessToken},
+			)
+			tc := oauth2.NewClient(ctx, ts)
+			client := github.NewClient(tc)
+			owner := c.Param("owner")
+			repo := c.Param("repo")
+			languages, _, _ := client.Repositories.ListLanguages(ctx, owner, repo)
+			log.Println(languages)
+			contributors, _, _ := client.Repositories.ListContributorsStats(ctx, owner, repo)
+			for j := 0; j < len(contributors); j++{
+				log.Printf("User: %s\n", contributors[j].GetAuthor().GetLogin())
+				states := contributors[j].Weeks
+				for k := 0; k < len(states); k++{
+					log.Printf("week%s: %d\n", states[k].GetWeek(), states[k].GetCommits())
+				}
+			}
+			/*
+			op := github.PullRequestListOptions{State: "all"}
+			prs, _, _ := client.PullRequests.List(ctx, owner, repo, &op)
+			for j := 0; j < len(prs); j++{
+				log.Printf("PR: %s\n", prs[j].GetTitle())
+				reviewers := prs[j].RequestedReviewers
+				log.Println("reviewers:")
+				for k := 0; k < len(reviewers); k++{
+					fmt.Println(reviewers[k].GetLogin())
+				}
+			}*/
+			op := github.ListOptions{Page: 5, PerPage: 50}
+			events, response, _ := client.Activity.ListEventsPerformedByUser(ctx, "MakotoNaruse", false,&op)
+			log.Println(response.NextPage)
+			log.Println(response.LastPage)
+			log.Println(len(events))
+			for j := 0; j < len(events); j++{
+				userName := events[j].GetActor().GetLogin()
+				log.Printf("Type: %s, user: %s, repo: %s, time:%s\n", events[j].GetType(), userName, events[j].GetRepo(), events[j].GetCreatedAt())
+			}
+			c.JSON(http.StatusOK, gin.H{
+				"name": repo,
+				"languages": languages,
 			})
 		}
 	})

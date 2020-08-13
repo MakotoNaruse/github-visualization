@@ -1,0 +1,57 @@
+{
+  viewer {
+    contributionsCollection {
+      commitContributionsByRepository(maxRepositories: 100) {
+        repository {
+          owner {
+            login
+          }
+          name
+          languages(last: 100) {
+            totalCount
+            totalSize
+            nodes {
+              color
+              name
+            }
+            edges {
+              size
+            }
+          }
+        }
+        contributions(last: 100) {
+          totalCount
+          nodes {
+            commitCount
+            occurredAt
+          }
+        }
+      }
+      pullRequestReviewContributionsByRepository(maxRepositories: 100) {
+        repository {
+          owner {
+            login
+          }
+          name
+          languages(last: 100) {
+            totalCount
+            totalSize
+            nodes {
+              color
+              name
+            }
+            edges {
+              size
+            }
+          }
+        }
+        contributions(last: 100) {
+          totalCount
+          nodes {
+            occurredAt
+          }
+        }
+      }
+    }
+  }
+}
