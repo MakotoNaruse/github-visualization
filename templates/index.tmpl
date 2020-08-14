@@ -5,10 +5,129 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <meta charset="utf-8">
     <title>{{ .title }}</title>
+    <script>
+    window.onload = function () {
+
+    //Better to construct options first and then pass it as a parameter
+    var options = {
+    	animationEnabled: true,
+    	title:{
+    		text: "Github Visualizer"
+    	},
+    	axisY:{
+    		title:"score"
+    	},
+    	toolTip: {
+    		shared: true,
+    		reversed: true
+    	},
+    	data: [
+    	{
+    		type: "stackedColumn",
+    		name: "Individual Score",
+    		showInLegend: "true",
+    		yValueFormatString: "#,##0.00",
+    		dataPoints: [
+    		    {{ range $key, $sc := .data.ScoreByLanguage }}
+                    { y: {{ $sc.TotalScore.IndividualScore }} , label: {{ $key }} },
+                {{ end }}
+    		]
+    	},
+    	{
+    		type: "stackedColumn",
+    		name: "Team Score",
+    		showInLegend: "true",
+    		yValueFormatString: "#,##0.00",
+    		dataPoints: [
+    			{{ range $key, $sc := .data.ScoreByLanguage }}
+                    { y: {{ $sc.TotalScore.TeamScore }} , label: {{ $key }} },
+                {{ end }}
+    		]
+    	},
+    	{
+            type: "stackedColumn",
+            name: "Society Score",
+            showInLegend: "true",
+            yValueFormatString: "#,##0.00",
+            dataPoints: [
+                {{ range $key, $sc := .data.ScoreByLanguage }}
+                    { y: {{ $sc.TotalScore.SocietyScore }} , label: {{ $key }} },
+                {{ end }}
+            ]
+        }]
+    };
+    $("#chartContainer").CanvasJSChart(options);
+
+    {{ range $key, $sc := .data.ScoreByLanguage }}
+        var options = {
+            animationEnabled: true,
+            title:{
+                text: "{{ $key }}"
+            },
+            axisY :{
+                title: "score"
+            },
+            toolTip: {
+                shared: true
+            },
+            data: [{
+                type: "stackedArea",
+                showInLegend: true,
+                name: "Individual Score",
+                //xValueFormatString: "",
+                yValueFormatString: "#,##0.00 contribute",
+                dataPoints: [
+                    {{ $sum := 0.0 }}
+                    {{ range $man, $mnsc := $sc.MonthlyScore }}
+                        {{ $sum = add $sum $mnsc.IndividualScore }}
+                        { x: new Date({{ $man }}) , y: {{ $sum }} },
+                    {{ end }}
+                ]
+            }, {
+                type: "stackedArea",
+                showInLegend: true,
+                name: "Team Score",
+                //xValueFormatString: "",
+                yValueFormatString: "#,##0.00 contribute",
+                dataPoints: [
+                   {{ $sum := 0.0 }}
+                   {{ range $man, $mnsc := $sc.MonthlyScore }}
+                       {{ $sum = add $sum $mnsc.TeamScore }}
+                       { x: new Date({{ $man }}) , y: {{ $sum }} },
+                   {{ end }}
+              　]
+            },{
+                type: "stackedArea",
+                showInLegend: true,
+                name: "Society Score",
+                //xValueFormatString: "",
+                yValueFormatString: "#,##0.00 contribute",
+                dataPoints: [
+                    {{ $sum := 0.0 }}
+                    {{ range $man, $mnsc := $sc.MonthlyScore }}
+                        {{ $sum = add $sum $mnsc.SocietyScore }}
+                        { x: new Date({{ $man }}) , y: {{ $mnsc.SocietyScore }} },
+                    {{ end }}
+            　   ]
+            }]
+        };
+        $("#{{ $key }}Container").CanvasJSChart(options);
+
+        {{ end }}
+
+    }
+
+    </script>
 </head>
 
 <body>
 <div id="content"></div>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+{{ range $key, $sc := .data.ScoreByLanguage }}
+    <div id="{{ $key }}Container" style="height: 370px; width: 100%;"></div>
+{{ end }}
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
 <script src="./assets/js/app.js"></script>
 
@@ -33,6 +152,5 @@
 {{ end }}
 
 </body>
-
 </html>
 {{ end }}

@@ -11,6 +11,7 @@ import (
 	"golang.org/x/oauth2"
 	oauth2github "golang.org/x/oauth2/github"
 	"google.golang.org/appengine"
+	"html/template"
 	"io/ioutil"
 	"log"
 	"math/rand"
@@ -18,6 +19,10 @@ import (
 	"os"
 	"time"
 )
+
+func add(a float64, b float64) float64 {
+	return a+b
+}
 
 func main() {
 	err := godotenv.Load()
@@ -28,6 +33,9 @@ func main() {
 	//oauthKey := os.Getenv("OAUTH_KEY")
 
 	r := gin.New()
+	r.SetFuncMap(template.FuncMap{
+		"add": add,
+	})
 
 	//r.Static("/assets", "./assets")
 	r.LoadHTMLGlob("templates/*")
@@ -36,18 +44,6 @@ func main() {
 	store := cookie.NewStore([]byte("secret"))
 	r.Use(sessions.Sessions("github-visualization", store))
 
-	// JSONデコード
-	// JSONファイル読み込み
-	bytes, err := ioutil.ReadFile("test.json")
-	if err != nil {
-		log.Fatal(err)
-	}
-	var githubWrap GithubWrap
-	if err := json.Unmarshal(bytes, &githubWrap); err != nil {
-		log.Fatal(err)
-	}
-	// デコードしたデータを表示
-	fmt.Printf("%+v\n", githubWrap.GithubData.GithubUser.ContributionsCollection.CommitContributions[0].Repository.Owner.Login)
 
 	var scopes = []string{"repo", "read:repo_hook","read:user"}
 	conf := oauth2.Config{
