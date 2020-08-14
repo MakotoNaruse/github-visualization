@@ -91,7 +91,7 @@ func main() {
 			if err := json.Unmarshal(result, &githubWrap); err != nil {
 				log.Fatal(err)
 			}
-			log.Printf("%+v\n", githubWrap.GithubData.GithubUser.ContributionsCollection)
+			log.Printf("%+v\n", githubWrap.GithubData.GithubUser)
 			visualizer, _ := Visualize(*githubWrap.GithubData)
 			c.HTML(http.StatusOK, "index.tmpl", gin.H{
 				"title":   "index",

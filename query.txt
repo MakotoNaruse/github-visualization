@@ -1,6 +1,7 @@
 {
   viewer {
     login
+    avatarUrl
     contributionsCollection {
       commitContributionsByRepository(maxRepositories: 100) {
         repository {
