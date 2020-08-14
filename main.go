@@ -92,10 +92,11 @@ func main() {
 				log.Fatal(err)
 			}
 			log.Printf("%+v\n", githubWrap.GithubData.GithubUser.ContributionsCollection)
+			visualizer, _ := Visualize(*githubWrap.GithubData)
 			c.HTML(http.StatusOK, "index.tmpl", gin.H{
 				"title":   "index",
 				"message": "hello world!!",
-				"data": githubWrap.GithubData.GithubUser.ContributionsCollection,
+				"data": visualizer,
 			})
 		}
 	})

@@ -14,6 +14,7 @@ type GithubData struct {
 
 type GithubUser struct {
 	Login string `json:"login"`
+	ImgURL string `json:"avatarUrl"`
 	ContributionsCollection *ContributionsCollection `json:"contributionsCollection"`
 }
 
@@ -65,6 +66,6 @@ type Contributions struct {
 }
 
 type Contributes struct {
-	CommitCount int `json:"commitCount"`
+	CommitCount *int `json:"commitCount"`
 	Time time.Time `json:"occurredAt"`
 }
