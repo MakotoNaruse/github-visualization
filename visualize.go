@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 )
 
 type Visualizer struct {
@@ -45,9 +44,9 @@ var languageString = map[string]string {
 	"TypeScript": "",
 }
 // レビューコントリビュートあたりの重み
-const reviewWeight = 10
+const reviewWeight = 10.0
 
-func Visualize( data GithubData )( Visualizer, []string ){
+func Visualize( data GithubData ) Visualizer{
 	user := data.GithubUser
 	totalScore := Score{
 		IndividualScore: 0.0,
@@ -63,7 +62,6 @@ func Visualize( data GithubData )( Visualizer, []string ){
 		ScoreByLanguage: scoreByLanguage,
 		ScoreByRepository: scoreByRepository,
 	}
-	var months []string
 	commitContributions := user.ContributionsCollection.CommitContributions
 	for i := 0; i < len(commitContributions); i++{
 		repo := commitContributions[i].Repository
@@ -82,10 +80,6 @@ func Visualize( data GithubData )( Visualizer, []string ){
 		} else {
 			ind = float64(commitContributions[i].Contributions.TotalCount)
 		}
-		fmt.Println(ind)
-		visualizer.TotalScore.IndividualScore += ind
-		visualizer.TotalScore.TeamScore += team
-		visualizer.TotalScore.SocietyScore += soc
 
 		//まずはリポジトリのスコアを格納
 		score := Score{
@@ -156,12 +150,93 @@ func Visualize( data GithubData )( Visualizer, []string ){
 				}
 			}
 		}
-		log.Println(fullName)
-		log.Println(scoreByRepository[fullName].LanguageRate)
-		log.Println(scoreByRepository[fullName].Score)
-		log.Println(scoreByLanguage["JavaScript"])
 	}
-	return visualizer, months
+	reviewContributions := user.ContributionsCollection.ReviewContributions
+	for i := 0; i < len(reviewContributions); i++{
+		repo := reviewContributions[i].Repository
+		fullName := fmt.Sprintf("%s/%s", repo.Owner.Login, repo.Name)
+		contributes := reviewContributions[i].Contributions.Contributes
+		monthly := MonthlyContributes(contributes)
+
+		// このリポジトリ単体のスコア
+		ind := 0.0
+		team := float64(reviewContributions[i].Contributions.TotalCount) * reviewWeight
+		soc := 0.0
+
+		//まずはリポジトリがあるならスコアをプラス
+		if repoScore, ok := scoreByRepository[fullName]; ok{
+			repoScore.Score.TeamScore += team
+			scoreByRepository[fullName] = repoScore
+		} else {
+			isOSS := user.Login != repo.Owner.Login && !repo.IsPrivate
+			languageRate := LanguageRate(repo.Languages)
+			score := Score{
+				IndividualScore: ind,
+				TeamScore: team,
+				SocietyScore: soc,
+			}
+			repoScore := RepositoryScore{
+				IsOSS: isOSS,
+				LanguageRate: languageRate,
+				Score: score,
+			}
+			scoreByRepository[fullName] = repoScore
+		}
+		languageRate := scoreByRepository[fullName].LanguageRate
+
+		//次に言語毎のスコアを出す
+		//まずは全体
+		for key, _ := range languageRate {
+			// 比率をかける
+			langInd := 0.0
+			langTeam := team * languageRate[key]
+			langSoc := 0.0
+			// 既に言語のスコアがあるならプラスし、ないなら新たに作る
+			if lnScore, ok := scoreByLanguage[key]; ok {
+				lnScore.TotalScore.IndividualScore += langInd
+				lnScore.TotalScore.TeamScore += langTeam
+				lnScore.TotalScore.SocietyScore += langSoc
+				scoreByLanguage[key] = lnScore
+			} else {
+				totalScore := Score{
+					IndividualScore: langInd,
+					TeamScore:       langTeam,
+					SocietyScore:    langSoc,
+				}
+				scoreByLanguage[key] = LanguageScore{
+					TotalScore: totalScore,
+					MonthlyScore: map[string]Score{},
+				}
+			}
+		}
+		//次に月毎
+		for month, cnt := range monthly {
+			//月のスコア
+			monInd := 0.0
+			monTeam := float64(cnt)
+			monSoc := 0.0
+			for key, _ := range languageRate {
+				// 比率をかける
+				langMonInd := monInd * languageRate[key]
+				langMonTeam := monTeam * languageRate[key]
+				langMonSoc := monSoc * languageRate[key]
+				// 既に言語のスコアがあるならプラスし、ないなら新たに作る
+				if monScore, ok := scoreByLanguage[key].MonthlyScore[month]; ok {
+					monScore.IndividualScore += langMonInd
+					monScore.TeamScore += langMonTeam
+					monScore.SocietyScore += langMonSoc
+					scoreByLanguage[key].MonthlyScore[month] = monScore
+				} else {
+					scoreByLanguage[key].MonthlyScore[month] = Score{
+						IndividualScore: langMonInd,
+						TeamScore:       langMonTeam,
+						SocietyScore:    langMonSoc,
+					}
+				}
+			}
+		}
+	}
+	return visualizer
 }
 
 func LanguageRate( languages Languages ) map[string]float64 {
