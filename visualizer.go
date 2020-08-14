@@ -34,13 +34,13 @@ type Score struct {
 var languageString = map[string]string {
 	"C": "",
 	"Cpp": "",
-	"C Sharp": "",
 	"Go": "",
 	"Java": "",
 	"JavaScript": "",
 	"PHP": "",
 	"Python": "",
 	"Ruby": "",
+	"Swift": "",
 	"TypeScript": "",
 }
 // レビューコントリビュートあたりの重み
@@ -48,11 +48,7 @@ const reviewWeight = 10.0
 
 func Visualize( data GithubData ) Visualizer{
 	user := data.GithubUser
-	totalScore := Score{
-		IndividualScore: 0.0,
-		TeamScore: 0.0,
-		SocietyScore: 0.0,
-	}
+	totalScore := Score{}
 	scoreByLanguage := map[string]LanguageScore{}
 	scoreByRepository := map[string]RepositoryScore{}
 	visualizer := Visualizer{
@@ -163,7 +159,7 @@ func Visualize( data GithubData ) Visualizer{
 		team := float64(reviewContributions[i].Contributions.TotalCount) * reviewWeight
 		soc := 0.0
 
-		//まずはリポジトリがあるならスコアをプラス
+		//まずはリポジトリがあるならスコアをプラス、ないなら作る
 		if repoScore, ok := scoreByRepository[fullName]; ok{
 			repoScore.Score.TeamScore += team
 			scoreByRepository[fullName] = repoScore

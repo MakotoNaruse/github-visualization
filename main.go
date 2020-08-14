@@ -37,7 +37,7 @@ func main() {
 		"add": add,
 	})
 
-	//r.Static("/assets", "./assets")
+	r.Static("/assets", "./assets")
 	r.LoadHTMLGlob("templates/*")
 
 	// セッションの設定
@@ -82,7 +82,6 @@ func main() {
 			if err := json.Unmarshal(result, &githubWrap); err != nil {
 				log.Fatal(err)
 			}
-			log.Printf("%+v\n", githubWrap.GithubData.GithubUser)
 			visualizer := Visualize(*githubWrap.GithubData)
 			c.HTML(http.StatusOK, "index.tmpl", gin.H{
 				"title":   "index",
