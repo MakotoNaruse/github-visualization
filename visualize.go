@@ -236,6 +236,17 @@ func Visualize( data GithubData ) Visualizer{
 			}
 		}
 	}
+	totalIndRepo := 0.0
+	totalTeamRepo := 0.0
+	totalSocRepo := 0.0
+	for _, val := range scoreByRepository{
+		totalIndRepo += val.Score.IndividualScore
+		totalTeamRepo += val.Score.TeamScore
+		totalSocRepo += val.Score.SocietyScore
+	}
+	visualizer.TotalScore.IndividualScore = totalIndRepo
+	visualizer.TotalScore.TeamScore = totalTeamRepo
+	visualizer.TotalScore.SocietyScore = totalSocRepo
 	return visualizer
 }
 

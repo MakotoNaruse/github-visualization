@@ -79,20 +79,15 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			//log.Printf("%s\n", query)
 			req, _ := client.NewRequest("POST", "/graphql", gin.H{"query": string(query)})
-			//dumpReq, _ := httputil.DumpRequest(req, true)
-			//log.Printf("%s\n",dumpReq)
 			resp, _ := tc.Do(req)
-			//dumpResp, _ := httputil.DumpResponse(resp, true)
-			//log.Printf("%s\n", dumpResp)
 			result, _ := ioutil.ReadAll(resp.Body)
 			var githubWrap GithubWrap
 			if err := json.Unmarshal(result, &githubWrap); err != nil {
 				log.Fatal(err)
 			}
 			log.Printf("%+v\n", githubWrap.GithubData.GithubUser)
-			visualizer, _ := Visualize(*githubWrap.GithubData)
+			visualizer := Visualize(*githubWrap.GithubData)
 			c.HTML(http.StatusOK, "index.tmpl", gin.H{
 				"title":   "index",
 				"message": "hello world!!",
