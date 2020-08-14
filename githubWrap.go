@@ -13,6 +13,7 @@ type GithubData struct {
 }
 
 type GithubUser struct {
+	Login string `json:"login"`
 	ContributionsCollection *ContributionsCollection `json:"contributionsCollection"`
 }
 
@@ -34,6 +35,7 @@ type ReviewContributions struct {
 type Repository struct {
 	Owner Owner `json:"owner"`
 	Name string `json:"name"`
+	IsPrivate bool `json:"isPrivate"`
 	Languages Languages `json:"languages"`
 }
 
@@ -54,7 +56,7 @@ type LanguageName struct {
 }
 
 type LanguageCount struct {
-	Count int `json:"siz"`
+	Count int `json:"size"`
 }
 
 type Contributions struct {

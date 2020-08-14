@@ -1,5 +1,6 @@
 {
   viewer {
+    login
     contributionsCollection {
       commitContributionsByRepository(maxRepositories: 100) {
         repository {
@@ -7,6 +8,7 @@
             login
           }
           name
+          isPrivate
           languages(last: 100) {
             totalCount
             totalSize
