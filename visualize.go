@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 type Visualizer struct {
 	UserName string
@@ -79,6 +82,10 @@ func Visualize( data GithubData )( Visualizer, []string ){
 		} else {
 			ind = float64(commitContributions[i].Contributions.TotalCount)
 		}
+		fmt.Println(ind)
+		visualizer.TotalScore.IndividualScore += ind
+		visualizer.TotalScore.TeamScore += team
+		visualizer.TotalScore.SocietyScore += soc
 
 		//まずはリポジトリのスコアを格納
 		score := Score{
@@ -105,6 +112,7 @@ func Visualize( data GithubData )( Visualizer, []string ){
 				lnScore.TotalScore.IndividualScore += langInd
 				lnScore.TotalScore.TeamScore += langTeam
 				lnScore.TotalScore.SocietyScore += langSoc
+				scoreByLanguage[key] = lnScore
 			} else {
 				totalScore := Score{
 					IndividualScore: langInd,
@@ -135,9 +143,10 @@ func Visualize( data GithubData )( Visualizer, []string ){
 				langMonSoc := monSoc * languageRate[key]
 				// 既に言語のスコアがあるならプラスし、ないなら新たに作る
 				if monScore, ok := scoreByLanguage[key].MonthlyScore[month]; ok {
-					monScore.IndividualScore = langMonInd
+					monScore.IndividualScore += langMonInd
 					monScore.TeamScore += langMonTeam
 					monScore.SocietyScore += langMonSoc
+					scoreByLanguage[key].MonthlyScore[month] = monScore
 				} else {
 					scoreByLanguage[key].MonthlyScore[month] = Score{
 						IndividualScore: langMonInd,
@@ -147,6 +156,10 @@ func Visualize( data GithubData )( Visualizer, []string ){
 				}
 			}
 		}
+		log.Println(fullName)
+		log.Println(scoreByRepository[fullName].LanguageRate)
+		log.Println(scoreByRepository[fullName].Score)
+		log.Println(scoreByLanguage["JavaScript"])
 	}
 	return visualizer, months
 }

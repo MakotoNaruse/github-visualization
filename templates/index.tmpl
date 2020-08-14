@@ -12,12 +12,24 @@
 
 <script src="./assets/js/app.js"></script>
 
-あああ<br>
-{{ .message }}<br>
-{{ .data.UserName }}<br>
-{{ .data.ImgURL }}<br>
-{{ range .repos }}
-    {{ .FullName }}<br>
+ユーザー名：{{ .data.UserName }}<br>
+アバターURL：{{ .data.ImgURL }}<br>
+合計スコア：{{ .data.TotalScore }}<br>
+{{ range $key, $sc := .data.ScoreByLanguage }}
+    言語：{{ $key }}<br>
+    スコア：{{ $sc.TotalScore }}<br>
+    {{ range $month, $mnsc := $sc.MonthlyScore }}
+        {{ $month }}：{{ $mnsc }}<br>
+    {{ end }}
+{{ end }}
+{{ range $key, $sc := .data.ScoreByRepository }}
+    リポジトリ名：{{ $key }}<br>
+    OSSか？：{{ $sc.IsOSS }}<br>
+    言語比率：
+    {{ range $lan, $rate := $sc.LanguageRate }}
+        {{ $lan }}：{{ $rate }}　
+    {{ end }}<br>
+    スコア：{{ $sc.Score }}<br>
 {{ end }}
 
 </body>
