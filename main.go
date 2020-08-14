@@ -49,7 +49,7 @@ func main() {
 	// デコードしたデータを表示
 	fmt.Printf("%+v\n", githubWrap.GithubData.GithubUser.ContributionsCollection.CommitContributions[0].Repository.Owner.Login)
 
-	var scopes = []string{"repo:status", "read:repo_hook","read:user"}
+	var scopes = []string{"repo", "read:repo_hook","read:user"}
 	conf := oauth2.Config{
 		ClientID:     os.Getenv("GITHUB_CLIENT_ID"),
 		ClientSecret: os.Getenv("GITHUB_CLIENT_SECRET"),
