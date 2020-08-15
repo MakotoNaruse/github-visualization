@@ -12,7 +12,7 @@
     var options = {
     	animationEnabled: true,
     	title:{
-    		text: "Github Visualizer"
+    		text: "Total Score"
     	},
     	axisY:{
     		title:"score"
@@ -74,7 +74,7 @@
                 type: "stackedArea",
                 showInLegend: true,
                 name: "Individual Score",
-                //xValueFormatString: "",
+                xValueFormatString: "MMM YYYY",
                 yValueFormatString: "#,##0.00 contribute",
                 dataPoints: [
                     {{ $sum := 0.0 }}
@@ -87,7 +87,7 @@
                 type: "stackedArea",
                 showInLegend: true,
                 name: "Team Score",
-                //xValueFormatString: "",
+                xValueFormatString: "MMM YYYY",
                 yValueFormatString: "#,##0.00 contribute",
                 dataPoints: [
                    {{ $sum := 0.0 }}
@@ -100,7 +100,7 @@
                 type: "stackedArea",
                 showInLegend: true,
                 name: "Society Score",
-                //xValueFormatString: "",
+                xValueFormatString: "MMM YYYY",
                 yValueFormatString: "#,##0.00 contribute",
                 dataPoints: [
                     {{ $sum := 0.0 }}
@@ -121,36 +121,66 @@
 </head>
 
 <body>
-<div id="content"></div>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-{{ range $key, $sc := .data.ScoreByLanguage }}
-    <div id="{{ $key }}Container" style="height: 370px; width: 100%;"></div>
-{{ end }}
+<div id="content">
+    <div id="side-bar">
+        <img src="{{ .data.ImgURL }}"/><br>
+        ユーザー名：{{ .data.UserName }}<br>
+        <h3>合計スコア</h3>
+        Individualスコア：{{ .data.TotalScore.IndividualScore }}<br>
+        Teamスコア：{{ .data.TotalScore.TeamScore }}<br>
+        Societyスコア：{{ .data.TotalScore.SocietyScore }}<br>
+        <button id="total-button">合計表示</button>
+        <h3>言語別詳細</h3>
+        {{ range $key, $sc := .data.ScoreByLanguage }}
+            <button id="{{ $key }}-button">{{ $key }}</button><br>
+        {{ end }}
+        <br>
+        <br>
+        <a href="/logout">ログアウトする</a>
+    </div>
+    <div id="main">
+        <div id="chart-wrap">
+            <div id="chartContainer" class="chart" style="height: 370px; width: 100%;"></div>
+            {{ range $key, $sc := .data.ScoreByLanguage }}
+                <div id="{{ $key }}Container" class="chart" style="height: 370px; width: 100%;"></div>
+            {{ end }}
+        </div>
+        {{ range $key, $sc := .data.ScoreByRepository }}
+            <div class="repo-card {{ if $sc.IsOSS }}repo-oss{{ end }}">
+                {{ if $sc.IsOSS }}repo-oss{{ end }}
+                <h3>{{ $key }}</h3>
+                言語比率：
+                {{ range $lan, $rate := $sc.LanguageRate }}
+                    {{ $lan }}：{{ printf "%0.2f" $rate }}　
+                {{ end }}<br>
+                <h4>スコア</h4>
+                Individualスコア：{{ $sc.Score.IndividualScore }}<br>
+                Teamスコア：{{ $sc.Score.TeamScore }}<br>
+                Societyスコア：{{ $sc.Score.SocietyScore }}<br>
+            </div>
+        {{ end }}
+    </div>
+</div>
+
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-
 <script src="./assets/js/app.js"></script>
-
-ユーザー名：{{ .data.UserName }}<br>
-アバターURL：{{ .data.ImgURL }}<br>
-合計スコア：{{ .data.TotalScore }}<br>
+<script>
 {{ range $key, $sc := .data.ScoreByLanguage }}
-    言語：{{ $key }}<br>
-    スコア：{{ $sc.TotalScore }}<br>
-    {{ range $month, $mnsc := $sc.MonthlyScore }}
-        {{ $month }}：{{ $mnsc }}<br>
-    {{ end }}
+    $("#{{ $key }}-button").click(function(){
+        $(".chart").hide();
+        $("#{{ $key }}Container").show();
+    });
 {{ end }}
-{{ range $key, $sc := .data.ScoreByRepository }}
-    リポジトリ名：{{ $key }}<br>
-    OSSか？：{{ $sc.IsOSS }}<br>
-    言語比率：
-    {{ range $lan, $rate := $sc.LanguageRate }}
-        {{ $lan }}：{{ $rate }}　
-    {{ end }}<br>
-    スコア：{{ $sc.Score }}<br>
-{{ end }}
-
+$("#total-button").click(function(){
+    $(".chart").hide();
+    $("#chartContainer").show();
+});
+$(window).on('load', function(){
+    $(".chart").hide();
+    $("#chartContainer").show();
+});
+</script>
 </body>
 </html>
 {{ end }}
