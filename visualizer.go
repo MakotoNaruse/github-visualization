@@ -46,7 +46,7 @@ var languageString = map[string]string {
 // レビューコントリビュートあたりの重み
 const reviewWeight = 10.0
 
-func Visualize( data GithubData ) Visualizer{
+func Visualize( data GithubData ) Visualizer {
 	user := data.GithubUser
 	totalScore := Score{}
 	scoreByLanguage := map[string]LanguageScore{}

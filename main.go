@@ -21,7 +21,7 @@ import (
 )
 
 func add(a float64, b float64) float64 {
-	return a+b
+	return a + b
 }
 
 func main() {
@@ -36,6 +36,7 @@ func main() {
 	r.SetFuncMap(template.FuncMap{
 		"add": add,
 	})
+	r.Use()
 
 	r.Static("/assets", "./assets")
 	r.LoadHTMLGlob("templates/*")
@@ -44,8 +45,7 @@ func main() {
 	store := cookie.NewStore([]byte("secret"))
 	r.Use(sessions.Sessions("github-visualization", store))
 
-
-	var scopes = []string{"repo", "read:repo_hook","read:user"}
+	var scopes = []string{"repo", "read:repo_hook", "read:user"}
 	conf := oauth2.Config{
 		ClientID:     os.Getenv("GITHUB_CLIENT_ID"),
 		ClientSecret: os.Getenv("GITHUB_CLIENT_SECRET"),
@@ -54,42 +54,7 @@ func main() {
 		Endpoint:     oauth2github.Endpoint,
 	}
 
-	r.GET("/", func(c *gin.Context) {
-		ctx := appengine.NewContext(c.Request)
-		log.Printf("%s", ctx)
-		session := sessions.Default(c)
-		token := session.Get("accessToken")
-		if token == nil {
-			log.Printf("redirect")
-			c.Redirect(http.StatusMovedPermanently, "/top")
-			c.Abort()
-		} else {
-			log.Println("logged in")
-			accessToken, _ := token.(string)
-			ts := oauth2.StaticTokenSource(
-				&oauth2.Token{AccessToken: accessToken},
-			)
-			tc := oauth2.NewClient(ctx, ts)
-			client := github.NewClient(tc)
-			query, err := ioutil.ReadFile("query.txt")
-			if err != nil {
-				log.Fatal(err)
-			}
-			req, _ := client.NewRequest("POST", "/graphql", gin.H{"query": string(query)})
-			resp, _ := tc.Do(req)
-			result, _ := ioutil.ReadAll(resp.Body)
-			var githubWrap GithubWrap
-			if err := json.Unmarshal(result, &githubWrap); err != nil {
-				log.Fatal(err)
-			}
-			visualizer := Visualize(*githubWrap.GithubData)
-			c.HTML(http.StatusOK, "index.tmpl", gin.H{
-				"title":   "index",
-				"message": "hello world!!",
-				"data": visualizer,
-			})
-		}
-	})
+	r.GET("/", index)
 
 	r.GET("/top", func(c *gin.Context) {
 		ctx := appengine.NewContext(c.Request)
@@ -123,15 +88,15 @@ func main() {
 		if state == nil {
 			log.Printf("redirect")
 			c.Redirect(http.StatusMovedPermanently, "/top")
-		} else{
+		} else {
 			st, _ := state.(string)
-			if st == c.Query("state"){
+			if st == c.Query("state") {
 				log.Println("authorized")
 				session.Clear()
 				session.Set("accessToken", githubToken.AccessToken)
 				session.Save()
 				c.Redirect(http.StatusMovedPermanently, "/")
-			} else{
+			} else {
 				log.Printf("redirect")
 				c.Redirect(http.StatusMovedPermanently, "/top")
 			}
@@ -160,6 +125,49 @@ func main() {
 	log.Printf("Listening on port %s", port)
 	log.Printf("Open http://localhost:%s in the browser", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
+}
+
+func index(c *gin.Context) {
+	ctx := appengine.NewContext(c.Request)
+	log.Printf("%s", ctx)
+	session := sessions.Default(c)
+	token := session.Get("accessToken")
+	if token == nil {
+		fmt.Printf("redirect")
+		c.Redirect(http.StatusMovedPermanently, "/top")
+		c.Abort()
+	} else {
+		fmt.Println("logged in")
+		accessToken, _ := token.(string)
+		ts := oauth2.StaticTokenSource(
+			&oauth2.Token{AccessToken: accessToken},
+		)
+		tc := oauth2.NewClient(ctx, ts)
+		client := github.NewClient(tc)
+		query, err := ioutil.ReadFile("query.txt")
+		if err != nil {
+			log.Fatal(err)
+		}
+		req, _ := client.NewRequest("POST", "/graphql", gin.H{"query": string(query)})
+		resp, _ := tc.Do(req)
+		result, _ := ioutil.ReadAll(resp.Body)
+		var githubWrap GithubWrap
+		if err := json.Unmarshal(result, &githubWrap); err != nil {
+			log.Fatal(err)
+		}
+		if githubWrap.GithubData == nil {
+			log.Printf("invalid access token")
+			c.Redirect(http.StatusMovedPermanently, "/logout")
+			c.Abort()
+		} else {
+			visualizer := Visualize(*githubWrap.GithubData)
+			c.HTML(http.StatusOK, "index.tmpl", gin.H{
+				"title":   "index",
+				"message": "hello world!!",
+				"data":    visualizer,
+			})
+		}
+	}
 }
 
 const (
