@@ -11,12 +11,15 @@ import (
 )
 
 func Test_index(t *testing.T) {
+	gin.SetMode(gin.TestMode)
 	ginContext, _ := gin.CreateTestContext(httptest.NewRecorder())
 	req, _ := http.NewRequest("GET", "/", nil)
 	ginContext.Request = req
 	store := cookie.NewStore([]byte("secret"))
 	handlerFunc := sessions.Sessions("github-visualizer", store)
 	handlerFunc(ginContext)
+
+	dummyToken := "dummy"
 
 	type args struct {
 		c *gin.Context
@@ -27,12 +30,12 @@ func Test_index(t *testing.T) {
 		args  args
 		token *string
 	}{
-		/*
-			{
-				name: "sessionがある場合",
-				args: args{ c: ginContext },
-				token: &dummyToken,
-			}*/
+
+		{
+			name:  "sessionがある場合",
+			args:  args{c: ginContext},
+			token: &dummyToken,
+		},
 		{
 			name:  "sessionがない場合",
 			args:  args{c: ginContext},
