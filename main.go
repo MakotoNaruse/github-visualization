@@ -20,6 +20,9 @@ import (
 	"time"
 )
 
+var scopes = []string{"repo", "read:repo_hook", "read:user"}
+var conf = oauth2.Config{}
+
 func add(a float64, b float64) float64 {
 	return a + b
 }
@@ -29,8 +32,13 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	//デバッグ用キー
-	//oauthKey := os.Getenv("OAUTH_KEY")
+	conf = oauth2.Config{
+		ClientID:     os.Getenv("GITHUB_CLIENT_ID"),
+		ClientSecret: os.Getenv("GITHUB_CLIENT_SECRET"),
+		RedirectURL:  os.Getenv("REDIRECT_URL"),
+		Scopes:       scopes,
+		Endpoint:     oauth2github.Endpoint,
+	}
 
 	r := gin.New()
 	r.SetFuncMap(template.FuncMap{
@@ -45,74 +53,11 @@ func main() {
 	store := cookie.NewStore([]byte("secret"))
 	r.Use(sessions.Sessions("github-visualization", store))
 
-	var scopes = []string{"repo", "read:repo_hook", "read:user"}
-	conf := oauth2.Config{
-		ClientID:     os.Getenv("GITHUB_CLIENT_ID"),
-		ClientSecret: os.Getenv("GITHUB_CLIENT_SECRET"),
-		RedirectURL:  os.Getenv("REDIRECT_URL"),
-		Scopes:       scopes,
-		Endpoint:     oauth2github.Endpoint,
-	}
-
 	r.GET("/", index)
-
-	r.GET("/top", func(c *gin.Context) {
-		ctx := appengine.NewContext(c.Request)
-		log.Printf("%s", ctx)
-		c.HTML(http.StatusOK, "landing.tmpl", gin.H{
-			"title": "top",
-		})
-	})
-
-	r.GET("/login", func(c *gin.Context) {
-		ctx := appengine.NewContext(c.Request)
-		log.Printf("%s", ctx)
-		session := sessions.Default(c)
-		state := createRand()
-		session.Clear()
-		session.Set("state", state)
-		session.Save()
-		url := conf.AuthCodeURL(state, oauth2.AccessTypeOffline)
-		log.Println(url)
-		c.Header("Location", url)
-		c.SecureJSON(http.StatusTemporaryRedirect, "")
-	})
-
-	r.GET("/callback", func(c *gin.Context) {
-		ctx := appengine.NewContext(c.Request)
-		log.Printf("%s", ctx)
-		githubToken, _ := conf.Exchange(ctx, c.Query("code"))
-		log.Println(githubToken.AccessToken)
-		session := sessions.Default(c)
-		state := session.Get("state")
-		if state == nil {
-			log.Printf("redirect")
-			c.Redirect(http.StatusMovedPermanently, "/top")
-		} else {
-			st, _ := state.(string)
-			if st == c.Query("state") {
-				log.Println("authorized")
-				session.Clear()
-				session.Set("accessToken", githubToken.AccessToken)
-				session.Save()
-				c.Redirect(http.StatusMovedPermanently, "/")
-			} else {
-				log.Printf("redirect")
-				c.Redirect(http.StatusMovedPermanently, "/top")
-			}
-		}
-	})
-
-	r.GET("/logout", func(c *gin.Context) {
-		ctx := appengine.NewContext(c.Request)
-		log.Printf("%s", ctx)
-		//セッションからデータを破棄する
-		session := sessions.Default(c)
-		session.Clear()
-		log.Println("セッション破棄")
-		session.Save()
-		c.Redirect(http.StatusMovedPermanently, "/")
-	})
+	r.GET("/top", top)
+	r.GET("/login", login)
+	r.GET("/callback", callback)
+	r.GET("/logout", logout)
 
 	http.Handle("/", r)
 
@@ -127,6 +72,21 @@ func main() {
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
 
+func login(c *gin.Context) {
+	ctx := appengine.NewContext(c.Request)
+	log.Printf("%s", ctx)
+	session := sessions.Default(c)
+	state := createRand()
+	session.Clear()
+	session.Save()
+	session.Set("state", state)
+	session.Save()
+	url := conf.AuthCodeURL(state, oauth2.AccessTypeOffline)
+	log.Println(url)
+	c.Header("Location", url)
+	c.SecureJSON(http.StatusTemporaryRedirect, "")
+}
+
 func index(c *gin.Context) {
 	ctx := appengine.NewContext(c.Request)
 	log.Printf("%s", ctx)
@@ -136,38 +96,84 @@ func index(c *gin.Context) {
 		fmt.Printf("redirect")
 		c.Redirect(http.StatusMovedPermanently, "/top")
 		c.Abort()
-	} else {
-		fmt.Println("logged in")
-		accessToken, _ := token.(string)
-		ts := oauth2.StaticTokenSource(
-			&oauth2.Token{AccessToken: accessToken},
-		)
-		tc := oauth2.NewClient(ctx, ts)
-		client := github.NewClient(tc)
-		query, err := ioutil.ReadFile("query.txt")
-		if err != nil {
-			log.Fatal(err)
-		}
-		req, _ := client.NewRequest("POST", "/graphql", gin.H{"query": string(query)})
-		resp, _ := tc.Do(req)
-		result, _ := ioutil.ReadAll(resp.Body)
-		var githubWrap GithubWrap
-		if err := json.Unmarshal(result, &githubWrap); err != nil {
-			log.Fatal(err)
-		}
-		if githubWrap.GithubData == nil {
-			log.Printf("invalid access token")
-			c.Redirect(http.StatusMovedPermanently, "/logout")
-			c.Abort()
-		} else {
-			visualizer := Visualize(*githubWrap.GithubData)
-			c.HTML(http.StatusOK, "index.tmpl", gin.H{
-				"title":   "index",
-				"message": "hello world!!",
-				"data":    visualizer,
-			})
-		}
+		return
 	}
+	accessToken, _ := token.(string)
+	ts := oauth2.StaticTokenSource(
+		&oauth2.Token{AccessToken: accessToken},
+	)
+	tc := oauth2.NewClient(ctx, ts)
+	client := github.NewClient(tc)
+	query, err := ioutil.ReadFile("query.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	req, _ := client.NewRequest("POST", "/graphql", gin.H{"query": string(query)})
+	resp, _ := tc.Do(req)
+	result, _ := ioutil.ReadAll(resp.Body)
+	var githubWrap GithubWrap
+	if err := json.Unmarshal(result, &githubWrap); err != nil {
+		log.Fatal(err)
+	}
+	if githubWrap.GithubData == nil {
+		c.Redirect(http.StatusMovedPermanently, "/logout")
+		c.Abort()
+	} else {
+		visualizer := Visualize(*githubWrap.GithubData)
+		c.HTML(http.StatusOK, "index.tmpl", gin.H{
+			"title":   "index",
+			"message": "hello world!!",
+			"data":    visualizer,
+		})
+	}
+}
+
+func top(c *gin.Context) {
+	ctx := appengine.NewContext(c.Request)
+	log.Printf("%s", ctx)
+	c.HTML(http.StatusOK, "landing.tmpl", gin.H{
+		"title": "top",
+	})
+}
+
+func callback(c *gin.Context) {
+	ctx := appengine.NewContext(c.Request)
+	log.Printf("%s", ctx)
+	githubToken, error := conf.Exchange(ctx, c.Query("code"))
+	if error != nil {
+		c.Redirect(http.StatusMovedPermanently, "/logout")
+		c.Abort()
+		return
+	}
+	session := sessions.Default(c)
+	state := session.Get("state")
+	if state == nil {
+		c.Redirect(http.StatusMovedPermanently, "/logout")
+		c.Abort()
+		return
+	}
+	st, _ := state.(string)
+	if st == c.Query("state") {
+		session.Clear()
+		session.Save()
+		session.Set("accessToken", githubToken.AccessToken)
+		session.Save()
+		c.Redirect(http.StatusMovedPermanently, "/")
+		c.Abort()
+		return
+	}
+	c.Redirect(http.StatusMovedPermanently, "/logout")
+	c.Abort()
+}
+
+func logout(c *gin.Context) {
+	ctx := appengine.NewContext(c.Request)
+	log.Printf("%s", ctx)
+	//セッションからデータを破棄する
+	session := sessions.Default(c)
+	session.Clear()
+	session.Save()
+	c.Redirect(http.StatusMovedPermanently, "/")
 }
 
 const (
