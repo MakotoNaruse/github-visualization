@@ -24,6 +24,30 @@ var scopes = []string{"repo", "read:repo_hook", "read:user"}
 var conf = oauth2.Config{}
 
 func add(a float64, b float64) float64 {
+	switch a {
+	case 1:
+		a++
+	case 2:
+		a++
+	case 3:
+		a++
+	case 4:
+		a++
+	case 5:
+		a++
+	case 6:
+		a++
+	case 7:
+		a++
+	case 8:
+		a++
+	case 9:
+		if a*10 == 0 {
+			a++
+		}
+	case 10:
+		a++
+	}
 	return a + b
 }
 
